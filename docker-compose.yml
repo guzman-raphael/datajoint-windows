@@ -1,12 +1,23 @@
 version: '2.4'
 services:
-  mysqlref:
+  db:
     build:
       context: .
       dockerfile: win-mysql.dockerfile
     image: mysql:v1.0
+    user: Administrator
     # ports:
     #   - "3306:3306"
+    networks:
+      - main
+  db-client:
+    build:
+      context: .
+      dockerfile: win-mysql-client.dockerfile
+    image: mysql_client:v1.0
+    user: Administrator
+    # depends_on:
+    #   - db
     networks:
       - main
 networks:
