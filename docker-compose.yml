@@ -1,0 +1,13 @@
+version: '2.4'
+services:
+  mysqlref:
+    build:
+      context: .
+      dockerfile: win-mysql.dockerfile
+    image: mysql:v1.0
+    # ports:
+    #   - "3306:3306"
+    networks:
+      - main
+networks:
+  main:
