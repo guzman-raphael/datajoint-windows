@@ -32,9 +32,12 @@ RUN pwsh -NoLogo -NoProfile -Command \
 
     
 ENV MYSQL C:\\MySQL
-RUN setx path "%path%;C:\MySQL\bin"
+#1803
+# RUN setx path "%path%;C:\MySQL\bin"
+#1809
+ENV PATH="$WindowsPATH;${ProgramFiles}\PowerShell;C:\MySQL\bin"
 
 # EXPOSE 3306
 ENTRYPOINT ["pwsh.exe" , "-NoLogo", "-NoProfile", "-Command"]
-# CMD ["mysql -u root -psimple -h mysqlref -e 'SELECT User, Host FROM mysql.user'"]
-CMD mysql -u root -psimple -h mysqlref -e \"SELECT User, Host FROM mysql.user\"
+# CMD ["mysql -u root -psimple -h db -e 'SELECT User, Host FROM mysql.user'"]
+# CMD mysql -h db -u root -psimple -e \"SELECT User, Host FROM mysql.user\"
